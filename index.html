@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PM Roadmap — Land My First Product Manager Role</title>
+<style>
+  :root {
+    --bg: #0F172A;
+    --surface: #1E293B;
+    --surface2: #263248;
+    --border: #334155;
+    --teal: #0EA5E9;
+    --teal-dim: #0284C7;
+    --green: #22C55E;
+    --green-dim: #16A34A;
+    --amber: #F59E0B;
+    --blue: #3B82F6;
+    --red: #EF4444;
+    --text: #F1F5F9;
+    --muted: #94A3B8;
+    --card-radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #0F172A 0%, #1a2744 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+
+  .header-badge {
+    display: inline-block;
+    background: rgba(14,165,233,0.15);
+    border: 1px solid rgba(14,165,233,0.3);
+    color: var(--teal);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  header h1 {
+    font-size: clamp(24px, 5vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #fff 0%, #94A3B8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  header p {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 560px;
+    margin: 0 auto 32px;
+  }
+
+  /* Progress Ring */
+  .progress-ring-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .ring-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+  }
+
+  .ring-container svg {
+    transform: rotate(-90deg);
+  }
+
+  .ring-track { fill: none; stroke: var(--surface); stroke-width: 10; }
+  .ring-fill {
+    fill: none;
+    stroke: var(--teal);
+    stroke-width: 10;
+    stroke-linecap: round;
+    stroke-dasharray: 314;
+    stroke-dashoffset: 314;
+    transition: stroke-dashoffset 0.6s ease;
+  }
+
+  .ring-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ring-pct {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .ring-sub {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+
+  .header-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+  }
+
+  .stat-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .stat-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .stat-val { font-weight: 700; color: var(--text); min-width: 28px; }
+  .stat-lbl { color: var(--muted); }
+
+  /* ── STICKY NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15,23,42,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: flex;
+    gap: 8px;
+    max-width: 900px;
+    margin: 0 auto;
+    white-space: nowrap;
+  }
+
+  .nav-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .nav-pill:hover {
+    color: var(--text);
+    background: var(--surface2);
+    text-decoration: none;
+  }
+
+  .nav-pill.active {
+    color: var(--teal);
+    background: rgba(14,165,233,0.1);
+    border-color: rgba(14,165,233,0.3);
+  }
+
+  .nav-pill .pill-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.6;
+  }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 16px 64px;
+  }
+
+  /* ── PHASE SECTION ── */
+  .phase {
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .phase-header:hover { background: var(--surface2); }
+
+  .phase-num {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+    flex-shrink: 0;
+    border: 2px solid;
+  }
+
+  .phase-title-wrap { flex: 1; min-width: 0; }
+
+  .phase-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .phase-weeks {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .phase-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .phase-pct {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--muted);
+    min-width: 36px;
+    text-align: right;
+  }
+
+  .phase-chevron {
+    color: var(--muted);
+    font-size: 18px;
+    transition: transform 0.25s;
+  }
+
+  .phase.open .phase-chevron { transform: rotate(180deg); }
+
+  /* Phase progress bar */
+  .phase-bar-wrap {
+    height: 3px;
+    background: var(--bg);
+  }
+
+  .phase-bar {
+    height: 100%;
+    background: var(--teal);
+    border-radius: 0;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  /* Phase body */
+  .phase-body {
+    display: none;
+    padding: 0 24px 24px;
+  }
+
+  .phase.open .phase-body { display: block; }
+
+  .phase-goal {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin: 16px 0 20px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    border-left: 3px solid var(--teal);
+  }
+
+  /* Resource group */
+  .resource-group-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 16px 0 10px;
+  }
+
+  .resource-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .resource-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid transparent;
+    transition: all 0.15s;
+    cursor: pointer;
+  }
+
+  .resource-item:hover {
+    background: var(--surface2);
+    border-color: var(--border);
+  }
+
+  .resource-item.done {
+    opacity: 0.55;
+  }
+
+  .resource-item.done .resource-title {
+    text-decoration: line-through;
+    color: var(--muted);
+  }
+
+  /* Custom checkbox */
+  .res-check {
+    width: 20px; height: 20px;
+    border-radius: 5px;
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s;
+    background: transparent;
+  }
+
+  .resource-item.done .res-check {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  .res-check-icon { display: none; font-size: 12px; color: white; }
+  .resource-item.done .res-check-icon { display: block; }
+
+  .resource-content { flex: 1; min-width: 0; }
+
+  .resource-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .resource-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+
+  .resource-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 10px;
+  }
+
+  .badge-free { background: rgba(59,130,246,0.15); color: #60A5FA; }
+  .badge-paid { background: rgba(245,158,11,0.15); color: #FCD34D; }
+
+  .res-link {
+    color: var(--muted);
+    font-size: 14px;
+    text-decoration: none;
+    padding: 4px;
+    border-radius: 4px;
+    transition: color 0.15s;
+    line-height: 1;
+  }
+
+  .res-link:hover { color: var(--teal); text-decoration: none; }
+
+  .res-date {
+    font-size: 10px;
+    color: var(--green);
+    white-space: nowrap;
+  }
+
+  /* ── MILESTONE CARD ── */
+  .milestone-card {
+    margin-top: 24px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .milestone-card.unlocked {
+    border-color: rgba(34,197,94,0.3);
+    background: rgba(34,197,94,0.04);
+  }
+
+  .milestone-card.completed {
+    border-color: rgba(34,197,94,0.5);
+    background: rgba(34,197,94,0.06);
+  }
+
+  .milestone-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .milestone-text {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .milestone-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: white;
+  }
+
+  .btn-primary:hover { background: var(--teal-dim); }
+
+  .btn-primary:disabled {
+    background: var(--surface2);
+    color: var(--muted);
+    cursor: not-allowed;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+
+  .btn-ghost:hover {
+    color: var(--text);
+    border-color: var(--text);
+  }
+
+  .btn-green {
+    background: var(--green);
+    color: white;
+  }
+
+  .btn-green:hover { background: var(--green-dim); }
+
+  .milestone-status {
+    font-size: 13px;
+    color: var(--green);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .linkedin-posted-badge {
+    font-size: 11px;
+    color: #60A5FA;
+    background: rgba(59,130,246,0.1);
+    border: 1px solid rgba(59,130,246,0.2);
+    padding: 3px 8px;
+    border-radius: 10px;
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 560px;
+    width: 100%;
+    position: relative;
+    animation: slideUp 0.25s ease;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+  }
+
+  .modal-close:hover { color: var(--text); }
+
+  .modal-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+
+  .modal-title {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  .modal-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .post-textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+    min-height: 140px;
+    font-family: inherit;
+    margin-bottom: 14px;
+    transition: border-color 0.15s;
+  }
+
+  .post-textarea:focus {
+    outline: none;
+    border-color: var(--teal);
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .copy-feedback {
+    font-size: 13px;
+    color: var(--green);
+    display: none;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .copy-feedback.show { display: flex; }
+
+  .modal-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 16px 0;
+  }
+
+  .modal-check-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .modal-check-row input[type="checkbox"] {
+    width: 16px; height: 16px;
+    accent-color: var(--blue);
+    cursor: pointer;
+  }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--green);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    z-index: 2000;
+    transition: transform 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 16px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  footer .footer-goal {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .reset-btn {
+    margin-top: 20px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .reset-btn:hover {
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .phase-header { padding: 16px; gap: 12px; }
+    .phase-body { padding: 0 16px 20px; }
+    .phase-num { width: 34px; height: 34px; font-size: 12px; }
+    .resource-item { padding: 10px; gap: 10px; }
+    .modal { padding: 20px; }
+    .progress-ring-wrap { flex-direction: column; gap: 20px; }
+    .header-stats { align-items: center; }
+    .btn { padding: 8px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-badge">6-Month PM Roadmap</div>
+  <h1>Land My First Product Manager Role</h1>
+  <p>A structured, resource-backed roadmap tracking my journey from learning PM fundamentals to getting hired.</p>
+
+  <div class="progress-ring-wrap">
+    <div class="ring-container">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <circle class="ring-track" cx="60" cy="60" r="50"/>
+        <circle class="ring-fill" id="overallRing" cx="60" cy="60" r="50"/>
+      </svg>
+      <div class="ring-label">
+        <span class="ring-pct" id="overallPct">0%</span>
+        <span class="ring-sub">Overall</span>
+      </div>
+    </div>
+    <div class="header-stats">
+      <div class="stat-row">
+        <span class="stat-dot" style="background:var(--green)"></span>
+        <span class="stat-val" id="statDone">0</span>
+        <span class="stat-lbl">resources completed</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-dot" style="background:var(--muted)"></span>
+        <span class="stat-val" id="statTotal">0</span>
+        <span class="stat-lbl">total resources</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-dot" style="background:var(--teal)"></span>
+        <span class="stat-val" id="statMilestones">0</span>
+        <span class="stat-lbl">milestones hit</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-dot" style="background:var(--blue)"></span>
+        <span class="stat-val" id="statLinkedIn">0</span>
+        <span class="stat-lbl">LinkedIn posts shared</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner" id="phaseNav"></div>
+</nav>
+
+<!-- MAIN -->
+<main id="mainContent"></main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-goal">🎯 Goal: Land a Product Manager role by end of 2026</div>
+  <div>Every resource checked, every milestone posted brings you one step closer.</div>
+  <br>
+  <button class="reset-btn" onclick="resetProgress()">Reset all progress</button>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="linkedinModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-icon">🎉</div>
+    <div class="modal-title" id="modalTitle">Milestone Unlocked!</div>
+    <div class="modal-sub" id="modalSub">Share your progress on LinkedIn to build visibility and hold yourself accountable.</div>
+    <textarea class="post-textarea" id="modalPostText" placeholder="Your post..."></textarea>
+    <div class="modal-actions">
+      <button class="btn btn-primary" onclick="copyPost()">📋 Copy to Clipboard</button>
+      <button class="btn btn-ghost" onclick="openLinkedIn()">🔗 Open LinkedIn</button>
+      <span class="copy-feedback" id="copyFeedback">✓ Copied!</span>
+    </div>
+    <hr class="modal-divider">
+    <label class="modal-check-row">
+      <input type="checkbox" id="postedCheck" onchange="markPosted()">
+      I posted this on LinkedIn ✓
+    </label>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+
+const PHASES = [
+  {
+    id: 'p1',
+    title: 'Foundation',
+    weeks: 'Weeks 1–4',
+    color: '#0EA5E9',
+    goal: 'Understand what a PM is, the landscape of PM roles, and build your first mental model of product thinking.',
+    resources: [
+      { id: 'p1_roadmapsh', title: 'PM Learning Path', desc: 'roadmap.sh/product-manager — visual skills map', type: 'free', url: 'https://roadmap.sh/product-manager' },
+      { id: 'p1_firstround', title: '"So You Want to be a PM" — First Round Review', desc: 'Comprehensive intro article from First Round Capital', type: 'free', url: 'https://review.firstround.com/so-you-want-to-be-a-product-manager-learn-from-these-5-books' },
+      { id: 'p1_lenny_free', title: "Lenny's Newsletter (free tier)", desc: 'lennysnewsletter.com — PM tactics, templates, career advice', type: 'free', url: 'https://www.lennysnewsletter.com' },
+      { id: 'p1_exponent_yt', title: '"What does a PM actually do?" — Exponent (YouTube)', desc: 'High-quality YouTube primer on the PM role', type: 'free', url: 'https://www.youtube.com/@tryexponent' },
+      { id: 'p1_mindprod', title: 'Mind the Product — Intro Articles', desc: 'mindtheproduct.com — global PM community content', type: 'free', url: 'https://www.mindtheproduct.com' },
+      { id: 'p1_prodschool_free', title: 'Product School Free Resources', desc: 'productschool.com — free webinars, guides, templates', type: 'free', url: 'https://productschool.com/free-product-management-resources' },
+      { id: 'p1_inspired', title: '📖 Inspired — Marty Cagan (~$20)', desc: 'The foundational PM bible. How Silicon Valley PMs build products.', type: 'paid', url: 'https://www.amazon.com/INSPIRED-Create-Tech-Products-Customers/dp/1119387507' },
+      { id: 'p1_lean', title: '📖 The Lean Startup — Eric Ries (~$15)', desc: 'Build-measure-learn loop; validated learning framework.', type: 'paid', url: 'https://www.amazon.com/Lean-Startup-Entrepreneurs-Continuous-Innovation/dp/0307887898' },
+    ],
+    milestone: {
+      id: 'p1_m',
+      text: 'I can explain what a PM does, the difference between PM roles across company sizes, and articulate why I want to be a PM.',
+      post: `Just started my Product Manager journey! 🚀
+
+Learning what PMs actually do — the difference between B2B and B2C roles, startup vs. enterprise PM, and what "owning the product" actually means in practice.
+
+Currently diving into Marty Cagan's Inspired. Mind-opening stuff.
+
+If you're a PM or made this transition, I'd love to connect and hear your story!
+
+#ProductManagement #CareerChange #LearningInPublic #PMRoadmap`
+    }
+  },
+
+  {
+    id: 'p2',
+    title: 'Core PM Skills',
+    weeks: 'Weeks 5–8',
+    color: '#8B5CF6',
+    goal: 'Master user research, product thinking, and backlog prioritization frameworks like RICE and ICE.',
+    resources: [
+      { id: 'p2_user_interview', title: '"How to Run a User Interview" — Emmett Shear (YouTube)', desc: 'Canonical user research technique from a seasoned PM/founder', type: 'free', url: 'https://www.youtube.com/results?search_query=how+to+run+a+user+interview+pm' },
+      { id: 'p2_producttalk', title: 'Teresa Torres Blog — Product Talk', desc: 'producttalk.org — Opportunity Solution Trees, discovery habits', type: 'free', url: 'https://www.producttalk.org' },
+      { id: 'p2_productplan', title: '"The Prioritization Roadmap" — ProductPlan Blog', desc: 'Deep dive into prioritization frameworks for PMs', type: 'free', url: 'https://www.productplan.com/learn/product-prioritization-frameworks/' },
+      { id: 'p2_benhorowitz', title: '"Good PM / Bad PM" — Ben Horowitz (a16z)', desc: 'Classic essay that defines PM excellence. Required reading.', type: 'free', url: 'https://a16z.com/good-product-manager-bad-product-manager/' },
+      { id: 'p2_rice', title: 'RICE Scoring Framework — Intercom Blog', desc: 'The definitive guide to RICE prioritization', type: 'free', url: 'https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/' },
+      { id: 'p2_exponent_free', title: 'Exponent PM Exercises (free tier)', desc: 'tryexponent.com — practice product sense and estimation questions', type: 'free', url: 'https://www.tryexponent.com' },
+      { id: 'p2_discovery', title: '📖 Continuous Discovery Habits — Teresa Torres (~$20)', desc: 'Systematic approach to user research and opportunity discovery', type: 'paid', url: 'https://www.amazon.com/Continuous-Discovery-Habits-Discover-Products/dp/1736633309' },
+      { id: 'p2_obvious', title: '📖 Obviously Awesome — April Dunford (~$18)', desc: 'How to nail product positioning. Critical for PMs.', type: 'paid', url: 'https://www.amazon.com/Obviously-Awesome-Product-Positioning-Customers/dp/1999023005' },
+      { id: 'p2_lenny_paid', title: "Lenny's Newsletter Paid ($15/mo)", desc: 'Deeper tactics, real PM templates, AMA archives from top PMs', type: 'paid', url: 'https://www.lennysnewsletter.com' },
+    ],
+    milestone: {
+      id: 'p2_m',
+      text: 'I can plan and conduct a user interview, synthesize insights into opportunities, and prioritize a feature backlog using RICE or ICE scoring.',
+      post: `Weeks 5–8 of my PM learning journey complete! 🌳
+
+This phase was all about core skills:
+• Running real user interviews (harder than it looks)
+• Teresa Torres' Opportunity Solution Trees — game-changing framework
+• RICE prioritization — finally have a structured way to make tradeoff decisions
+
+The biggest insight: PMs don't build what users ask for — they build what solves the problem underneath the request.
+
+What frameworks do you use for prioritization? 👇
+
+#ProductThinking #UserResearch #PMRoadmap #LearningInPublic`
+    }
+  },
+
+  {
+    id: 'p3',
+    title: 'Tools & Frameworks',
+    weeks: 'Weeks 9–12',
+    color: '#10B981',
+    goal: 'Write professional PRDs, build visual roadmaps, define north star metrics, and get hands-on with PM tools.',
+    resources: [
+      { id: 'p3_prd_atlassian', title: '"How to Write a Great PRD" — Atlassian', desc: 'Template + guide from Atlassian for writing Product Requirements Docs', type: 'free', url: 'https://www.atlassian.com/agile/product-management/requirements' },
+      { id: 'p3_metrics_lenny', title: '"Metrics for PMs" — Lenny\'s Newsletter', desc: 'What metrics matter and how to pick the right ones', type: 'free', url: 'https://www.lennysnewsletter.com/p/north-star-metric' },
+      { id: 'p3_figma', title: 'Figma (Free Tier) — Wireframing', desc: 'figma.com — industry standard design tool, free for up to 3 projects', type: 'free', url: 'https://www.figma.com' },
+      { id: 'p3_notion', title: 'Notion PM Templates', desc: 'notion.so/templates — pre-built roadmap, PRD, and sprint planning templates', type: 'free', url: 'https://www.notion.so/templates/category/product-management' },
+      { id: 'p3_northstar', title: '"North Star Metric" Guide — Amplitude Blog', desc: 'How to define and align your team around a north star metric', type: 'free', url: 'https://amplitude.com/blog/north-star-playbook' },
+      { id: 'p3_ga4', title: 'Google Analytics Academy — Free GA4 Certification', desc: 'skillshop.google.com — free GA4 certification, useful for any PM role', type: 'free', url: 'https://skillshop.google.com/googleanalytics' },
+      { id: 'p3_okr', title: '📖 Measure What Matters — John Doerr (~$15)', desc: 'The OKR bible. How Google, Intel, and top companies set goals.', type: 'paid', url: 'https://www.amazon.com/Measure-What-Matters-Google-Foundation/dp/0525536221' },
+      { id: 'p3_reforge', title: 'Reforge Foundations (~$2,000/yr)', desc: 'reforge.com — Most impactful paid PM program. Taught by senior PMs from top companies.', type: 'paid', url: 'https://www.reforge.com' },
+      { id: 'p3_prodschool', title: 'Product School PM Certification (~$4,999)', desc: 'productschool.com — structured curriculum, hiring network, certificate', type: 'paid', url: 'https://productschool.com' },
+    ],
+    milestone: {
+      id: 'p3_m',
+      text: 'I have written a complete PRD for a mock product, built a visual roadmap in Notion or Figma, and defined north star metrics and OKRs.',
+      post: `Milestone unlocked 🏆 — wrote my first full Product Requirements Document!
+
+Phase 3 of my PM roadmap is complete:
+✅ Full PRD written for a mock product from scratch
+✅ Built a visual roadmap in Notion
+✅ Defined north star metrics + OKRs using the Measure What Matters framework
+✅ Got hands-on with Figma for wireframing
+
+The PRD forced me to think like a real PM — who is the user, what's the problem, how do we measure success?
+
+Happy to share my PRD template if you want it. Just drop a comment 👇
+
+#ProductManagement #PRD #BuildingInPublic #PMRoadmap`
+    }
+  },
+
+  {
+    id: 'p4',
+    title: 'Industry & Technical Literacy',
+    weeks: 'Weeks 13–16',
+    color: '#F59E0B',
+    goal: 'Build technical credibility — understand how software is built, read APIs, write SQL, and follow tech industry trends.',
+    resources: [
+      { id: 'p4_tech_skills', title: '"Technical Skills Every PM Needs" — Product School', desc: 'What tech knowledge actually matters for non-engineer PMs', type: 'free', url: 'https://productschool.com/blog/product-management-2/technical-skills-product-manager/' },
+      { id: 'p4_cs50', title: 'CS50 — Harvard Introduction to CS (Free)', desc: 'cs50.harvard.edu — the best free CS intro course. Teaches how software actually works.', type: 'free', url: 'https://cs50.harvard.edu/x' },
+      { id: 'p4_api', title: '"What is an API?" — Postman Learning Center', desc: 'postman.com/learning — clear explanation of APIs for non-engineers', type: 'free', url: 'https://learning.postman.com/docs/getting-started/introduction/' },
+      { id: 'p4_sql', title: 'SQL for PMs — Mode Analytics Tutorial', desc: 'mode.com/sql-tutorial — free interactive SQL course used by data teams', type: 'free', url: 'https://mode.com/sql-tutorial/' },
+      { id: 'p4_stratechery', title: 'Stratechery Free Tier — Ben Thompson', desc: 'stratechery.com — weekly essay on tech strategy. Essential industry reading.', type: 'free', url: 'https://stratechery.com' },
+      { id: 'p4_hn', title: 'Hacker News — Daily Reading Habit', desc: 'news.ycombinator.com — tech community news, set as your browser home page', type: 'free', url: 'https://news.ycombinator.com' },
+      { id: 'p4_zerotoone', title: '📖 Zero to One — Peter Thiel (~$12)', desc: 'How to build startups that create genuinely new things. Classic PM perspective.', type: 'paid', url: 'https://www.amazon.com/Zero-One-Notes-Startups-Future/dp/0804139296' },
+      { id: 'p4_stratechery_paid', title: 'Stratechery Paid ($14/mo)', desc: 'Daily tech strategy analysis from Ben Thompson. Worth every cent for industry IQ.', type: 'paid', url: 'https://stratechery.com' },
+      { id: 'p4_hooked', title: '📖 Hooked — Nir Eyal (~$15)', desc: 'How to build habit-forming products. The hook model explained.', type: 'paid', url: 'https://www.amazon.com/Hooked-How-Build-Habit-Forming-Products/dp/1591847788' },
+    ],
+    milestone: {
+      id: 'p4_m',
+      text: 'I can read an engineering spec, write basic SQL queries to pull product data, explain how an API works to a stakeholder, and discuss current tech industry trends.',
+      post: `Week 13–16 down 💡 — leveling up technical literacy as a PM!
+
+Biggest surprises this phase:
+• SQL is genuinely useful — I can now pull user funnel data without asking an engineer
+• CS50 demystified how software is built. No more nodding along in tech discussions!
+• Reading Hacker News daily is changing how I think about products and markets
+
+If you're transitioning into PM: don't skip this phase. Engineers respect PMs who understand the craft.
+
+What technical skills do you think are most underrated for PMs? 👇
+
+#TechPM #ProductManagement #SQL #LearningInPublic`
+    }
+  },
+
+  {
+    id: 'p5',
+    title: 'Portfolio Building',
+    weeks: 'Weeks 17–20',
+    color: '#EC4899',
+    goal: 'Build 2 case studies, complete mock interviews, and create tangible proof of PM thinking to show recruiters.',
+    resources: [
+      { id: 'p5_casestudy_tmpl', title: 'PM Case Study Template — Exponent (Free)', desc: 'tryexponent.com — structured template for building PM case studies', type: 'free', url: 'https://www.tryexponent.com/blog/pm-case-study' },
+      { id: 'p5_teardown', title: 'Product Teardown Examples — Lenny\'s Newsletter Archive', desc: 'How top PMs analyze existing products. Use as case study reference.', type: 'free', url: 'https://www.lennysnewsletter.com/p/product-teardowns' },
+      { id: 'p5_glassdoor', title: 'PM Interview Questions — Glassdoor', desc: 'glassdoor.com — real PM interview questions from actual companies', type: 'free', url: 'https://www.glassdoor.com/Interview/product-manager-interview-questions-SRCH_KO0,15.htm' },
+      { id: 'p5_igotoanoffer', title: '"Crack the PM Interview" — IGotAnOffer (Free Articles)', desc: 'igotanoffer.com — free PM interview prep guides, question types, frameworks', type: 'free', url: 'https://igotanoffer.com/blogs/product-manager/pm-interview-prep' },
+      { id: 'p5_pramp', title: 'Pramp — Free Mock Interview Platform', desc: 'pramp.com — peer mock interviews for PM, eng, and data roles', type: 'free', url: 'https://www.pramp.com' },
+      { id: 'p5_portfolio', title: '"How to Build a PM Portfolio" — The Product Folks', desc: 'Practical guide on what to include in a PM portfolio or resume', type: 'free', url: 'https://www.theproductfolks.com/blog/how-to-build-a-product-management-portfolio' },
+      { id: 'p5_cracking', title: '📖 Cracking the PM Interview — McDowell & Bavaro (~$30)', desc: 'The definitive PM interview prep book. Case frameworks, behavioral Q&A, offer negotiation.', type: 'paid', url: 'https://www.amazon.com/Cracking-PM-Interview-Product-Technology/dp/0984782818' },
+      { id: 'p5_exponent_paid', title: 'Exponent PM Interview Course ($12/mo)', desc: 'tryexponent.com — video lessons, case walkthroughs, feedback from PMs', type: 'paid', url: 'https://www.tryexponent.com/courses/pm' },
+      { id: 'p5_igotoanoffer_course', title: 'IGotAnOffer PM Course (~$200)', desc: 'Structured PM interview curriculum with practice cases and coaching', type: 'paid', url: 'https://igotanoffer.com/products/pm-interview-prep-course' },
+    ],
+    milestone: {
+      id: 'p5_m',
+      text: 'I have 2 PM case studies published (PDF or personal site), completed at least 3 mock PM interviews, and received structured feedback on my performance.',
+      post: `Portfolio drop! 📁
+
+Phase 5 of my PM roadmap complete. Here's what I built:
+
+✅ Case Study 1: Redesigned [App Name]'s onboarding flow — reduced drop-off by 40% (hypothetical)
+✅ Case Study 2: 0→1 product concept for [Problem Space] — full PRD + user research
+✅ Completed 3 mock PM interviews via Pramp + feedback received
+
+The mock interviews were humbling but necessary. Structured frameworks (CIRCLES, CIRCLES+) make a huge difference.
+
+Would love feedback from PMs in my network on the case studies! Link in comments 👇
+
+#ProductManagement #PMPortfolio #JobSearch #LearningInPublic`
+    }
+  },
+
+  {
+    id: 'p6',
+    title: 'Job Search & Networking',
+    weeks: 'Weeks 21–24',
+    color: '#EF4444',
+    goal: 'Apply systematically, build a PM network, ace real interviews, and land your first PM role.',
+    resources: [
+      { id: 'p6_linkedin_alerts', title: 'LinkedIn Job Alerts — APM & PM Roles', desc: 'Set alerts for "Associate PM", "Product Manager", "APM Program" on LinkedIn', type: 'free', url: 'https://www.linkedin.com/jobs/' },
+      { id: 'p6_levels', title: 'Levels.fyi — PM Salary Data', desc: 'levels.fyi — real PM comp data by company, level, and location', type: 'free', url: 'https://www.levels.fyi' },
+      { id: 'p6_apmlist', title: 'APM List Newsletter', desc: 'apmlist.com — curated list of APM programs at top companies', type: 'free', url: 'https://apmlist.com' },
+      { id: 'p6_networking', title: '"How to Network Your Way Into PM" — Product School', desc: 'Step-by-step networking strategy for breaking into PM', type: 'free', url: 'https://productschool.com/blog/career/how-to-network-your-way-into-product-management/' },
+      { id: 'p6_cold_outreach', title: '"Cold Outreach Template That Works" — Lenny\'s Newsletter', desc: 'Proven template for reaching out to PMs for informational interviews', type: 'free', url: 'https://www.lennysnewsletter.com' },
+      { id: 'p6_teal', title: 'Teal Job Tracker (Free Tier)', desc: 'tealhq.com — track applications, contacts, and interview stages in one place', type: 'free', url: 'https://www.tealhq.com' },
+      { id: 'p6_parachute', title: '📖 What Color Is Your Parachute? (~$18)', desc: 'Best general job search framework. Helpful for career changers.', type: 'paid', url: 'https://www.amazon.com/What-Color-Your-Parachute-2024/dp/1984861395' },
+      { id: 'p6_li_premium', title: 'LinkedIn Premium (~$40/mo)', desc: 'InMail to reach hiring managers, see who viewed your profile, applicant insights', type: 'paid', url: 'https://www.linkedin.com/premium/' },
+      { id: 'p6_teal_plus', title: 'Teal+ Plan (~$9/mo)', desc: 'AI resume tailoring, unlimited job tracking, interview prep tools', type: 'paid', url: 'https://www.tealhq.com' },
+    ],
+    milestone: {
+      id: 'p6_m',
+      text: 'I have applied to 20+ PM roles, completed 5+ real PM interviews, and have at least 1 offer or active final-round conversation.',
+      post: `Big update 🎉
+
+After 6 months of deliberate learning, I'm officially in PM interviews!
+
+My roadmap covered:
+✅ PM fundamentals & mental models
+✅ User research & discovery
+✅ PRDs, roadmaps & metrics
+✅ Technical literacy (SQL, APIs, CS fundamentals)
+✅ Portfolio with 2 real case studies
+✅ 5+ mock interviews + feedback loops
+
+Now applying this for real. The journey from "what is a PM?" to interviewing at [Company] in 6 months.
+
+DM me if you want the full resource list — happy to share.
+
+#ProductManager #JobSearch #NewChapter #PMRoadmap #LearningInPublic`
+    }
+  }
+];
+
+// ─── STATE ──────────────────────────────────────────────────────────────────
+
+const STATE_KEY = 'pm_roadmap';
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STATE_KEY);
+    if (!raw) return { resources: {}, milestones: {} };
+    return JSON.parse(raw);
+  } catch { return { resources: {}, milestones: {} }; }
+}
+
+function saveState(state) {
+  localStorage.setItem(STATE_KEY, JSON.stringify(state));
+}
+
+let state = loadState();
+let currentModalPhaseId = null;
+let currentMilestoneId = null;
+
+// ─── BUILD UI ────────────────────────────────────────────────────────────────
+
+function build() {
+  buildNav();
+  buildPhases();
+  updateGlobal();
+}
+
+function buildNav() {
+  const nav = document.getElementById('phaseNav');
+  nav.innerHTML = PHASES.map((p, i) => `
+    <a class="nav-pill" id="pill_${p.id}" href="#${p.id}">
+      <span class="pill-dot"></span>
+      P${i + 1}: ${p.title}
+    </a>
+  `).join('');
+}
+
+function buildPhases() {
+  const main = document.getElementById('mainContent');
+  main.innerHTML = PHASES.map((phase, i) => {
+    const freeRes = phase.resources.filter(r => r.type === 'free');
+    const paidRes = phase.resources.filter(r => r.type === 'paid');
+    const ms = state.milestones[phase.milestone.id] || {};
+
+    return `
+      <section class="phase" id="${phase.id}" data-phase="${phase.id}">
+        <div class="phase-header" onclick="togglePhase('${phase.id}')">
+          <div class="phase-num" style="color:${phase.color};border-color:${phase.color}20;background:${phase.color}15">
+            ${i + 1}
+          </div>
+          <div class="phase-title-wrap">
+            <div class="phase-title">${phase.title}</div>
+            <div class="phase-weeks">${phase.weeks}</div>
+          </div>
+          <div class="phase-right">
+            <div class="phase-pct" id="pct_${phase.id}">0%</div>
+            <div class="phase-chevron">▾</div>
+          </div>
+        </div>
+        <div class="phase-bar-wrap">
+          <div class="phase-bar" id="bar_${phase.id}" style="background:${phase.color}"></div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-goal">${phase.goal}</div>
+
+          <div class="resource-group-label">🆓 Free Resources</div>
+          <div class="resource-list">
+            ${freeRes.map(r => resourceHTML(r)).join('')}
+          </div>
+
+          <div class="resource-group-label" style="margin-top:20px">💳 Paid Resources</div>
+          <div class="resource-list">
+            ${paidRes.map(r => resourceHTML(r)).join('')}
+          </div>
+
+          ${milestoneHTML(phase, ms)}
+        </div>
+      </section>
+    `;
+  }).join('');
+
+  // Open first phase by default
+  if (!document.querySelector('.phase.open')) {
+    document.querySelector('.phase').classList.add('open');
+  }
+}
+
+function resourceHTML(r) {
+  const s = state.resources[r.id] || {};
+  const done = !!s.done;
+  const dateStr = s.completedAt ? `<span class="res-date">${s.completedAt}</span>` : '';
+
+  return `
+    <div class="resource-item${done ? ' done' : ''}" id="ri_${r.id}" onclick="toggleResource('${r.id}')">
+      <div class="res-check">
+        <span class="res-check-icon">✓</span>
+      </div>
+      <div class="resource-content">
+        <div class="resource-title">${r.title}</div>
+        <div class="resource-desc">${r.desc}</div>
+      </div>
+      <div class="resource-meta">
+        ${dateStr}
+        <span class="badge badge-${r.type}">${r.type}</span>
+        <a class="res-link" href="${r.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="Open resource">↗</a>
+      </div>
+    </div>
+  `;
+}
+
+function milestoneHTML(phase, ms) {
+  const m = phase.milestone;
+  const phasePct = getPhasePercent(phase.id);
+  const unlocked = phasePct >= 70;
+  const completed = !!ms.done;
+  const posted = !!ms.postedLinkedIn;
+
+  let cls = 'milestone-card';
+  if (completed) cls += ' completed';
+  else if (unlocked) cls += ' unlocked';
+
+  const statusIcon = completed ? '🏆' : (unlocked ? '🔓' : '🔒');
+
+  return `
+    <div class="${cls}" id="mc_${phase.id}">
+      <div class="milestone-title">
+        ${statusIcon} Milestone
+        ${posted ? '<span class="linkedin-posted-badge">📢 Posted on LinkedIn</span>' : ''}
+      </div>
+      <div class="milestone-text">${m.text}</div>
+      <div class="milestone-actions">
+        ${completed
+          ? `<span class="milestone-status">✓ Completed${ms.completedAt ? ` · ${ms.completedAt}` : ''}</span>
+             <button class="btn btn-ghost" onclick="openLinkedInModal('${phase.id}')">📢 Share Again</button>`
+          : `<button class="btn btn-primary" ${unlocked ? '' : 'disabled'} onclick="completeMilestone('${phase.id}')">
+               ${unlocked ? '🎯 Mark Milestone Complete' : '🔒 Complete 70% of resources first'}
+             </button>`
+        }
+      </div>
+    </div>
+  `;
+}
+
+// ─── INTERACTIONS ─────────────────────────────────────────────────────────────
+
+function togglePhase(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+function toggleResource(id) {
+  const s = state.resources[id] || {};
+  if (s.done) {
+    delete state.resources[id];
+  } else {
+    state.resources[id] = { done: true, completedAt: today() };
+  }
+  saveState(state);
+
+  // Update the resource item
+  const el = document.getElementById(`ri_${id}`);
+  const newDone = !!state.resources[id];
+  el.classList.toggle('done', newDone);
+  const dateEl = el.querySelector('.res-date');
+  if (newDone) {
+    if (!dateEl) {
+      el.querySelector('.resource-meta').insertAdjacentHTML('afterbegin', `<span class="res-date">${today()}</span>`);
+    }
+  } else {
+    if (dateEl) dateEl.remove();
+  }
+
+  // Find which phase this belongs to
+  const phase = PHASES.find(p => p.resources.some(r => r.id === id));
+  if (phase) {
+    updatePhaseBar(phase);
+    updateMilestoneCard(phase);
+  }
+  updateGlobal();
+}
+
+function completeMilestone(phaseId) {
+  const phase = PHASES.find(p => p.id === phaseId);
+  const pct = getPhasePercent(phaseId);
+  if (pct < 70) return;
+
+  state.milestones[phase.milestone.id] = {
+    done: true,
+    completedAt: today(),
+    postedLinkedIn: false
+  };
+  saveState(state);
+  updateMilestoneCard(phase);
+  updateGlobal();
+  openLinkedInModal(phaseId);
+}
+
+// ─── PHASE UPDATES ───────────────────────────────────────────────────────────
+
+function getPhasePercent(phaseId) {
+  const phase = PHASES.find(p => p.id === phaseId);
+  const total = phase.resources.length;
+  const done = phase.resources.filter(r => state.resources[r.id]?.done).length;
+  return total === 0 ? 0 : Math.round((done / total) * 100);
+}
+
+function updatePhaseBar(phase) {
+  const pct = getPhasePercent(phase.id);
+  const bar = document.getElementById(`bar_${phase.id}`);
+  const pctEl = document.getElementById(`pct_${phase.id}`);
+  if (bar) bar.style.width = pct + '%';
+  if (pctEl) pctEl.textContent = pct + '%';
+  if (pctEl) pctEl.style.color = pct >= 70 ? '#22C55E' : '';
+}
+
+function updateMilestoneCard(phase) {
+  const ms = state.milestones[phase.milestone.id] || {};
+  const el = document.getElementById(`mc_${phase.id}`);
+  if (!el) return;
+  el.outerHTML = milestoneHTML(phase, ms);
+}
+
+function updateGlobal() {
+  let totalRes = 0, doneRes = 0;
+  PHASES.forEach(p => {
+    totalRes += p.resources.length;
+    doneRes += p.resources.filter(r => state.resources[r.id]?.done).length;
+    updatePhaseBar(p);
+    updateNavPill(p);
+  });
+
+  const pct = totalRes === 0 ? 0 : Math.round((doneRes / totalRes) * 100);
+  const ring = document.getElementById('overallRing');
+  const circumference = 314;
+  const offset = circumference - (circumference * pct / 100);
+  if (ring) ring.style.strokeDashoffset = offset;
+
+  document.getElementById('overallPct').textContent = pct + '%';
+  document.getElementById('statDone').textContent = doneRes;
+  document.getElementById('statTotal').textContent = totalRes;
+
+  const milestonesHit = PHASES.filter(p => state.milestones[p.milestone.id]?.done).length;
+  const linkedInPosts = PHASES.filter(p => state.milestones[p.milestone.id]?.postedLinkedIn).length;
+  document.getElementById('statMilestones').textContent = milestonesHit;
+  document.getElementById('statLinkedIn').textContent = linkedInPosts;
+}
+
+function updateNavPill(phase) {
+  const pct = getPhasePercent(phase.id);
+  const pill = document.getElementById(`pill_${phase.id}`);
+  if (!pill) return;
+  const ms = state.milestones[phase.milestone.id];
+  if (ms?.done) {
+    pill.classList.add('active');
+  } else if (pct > 0) {
+    pill.style.color = '#94A3B8';
+  }
+}
+
+// ─── LINKEDIN MODAL ───────────────────────────────────────────────────────────
+
+function openLinkedInModal(phaseId) {
+  const phase = PHASES.find(p => p.id === phaseId);
+  currentModalPhaseId = phaseId;
+  currentMilestoneId = phase.milestone.id;
+
+  document.getElementById('modalTitle').textContent = `🎯 Phase ${PHASES.indexOf(phase) + 1} Complete!`;
+  document.getElementById('modalSub').textContent = 'Share your progress on LinkedIn to build credibility and accountability.';
+  document.getElementById('modalPostText').value = phase.milestone.post;
+
+  const ms = state.milestones[phase.milestone.id] || {};
+  document.getElementById('postedCheck').checked = !!ms.postedLinkedIn;
+
+  document.getElementById('copyFeedback').classList.remove('show');
+  document.getElementById('linkedinModal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('linkedinModal').classList.remove('open');
+  currentModalPhaseId = null;
+  currentMilestoneId = null;
+}
+
+function copyPost() {
+  const text = document.getElementById('modalPostText').value;
+  navigator.clipboard.writeText(text).then(() => {
+    const fb = document.getElementById('copyFeedback');
+    fb.classList.add('show');
+    setTimeout(() => fb.classList.remove('show'), 2000);
+  });
+}
+
+function openLinkedIn() {
+  window.open('https://www.linkedin.com/feed/', '_blank', 'noopener');
+}
+
+function markPosted() {
+  if (!currentMilestoneId) return;
+  const checked = document.getElementById('postedCheck').checked;
+  if (!state.milestones[currentMilestoneId]) {
+    state.milestones[currentMilestoneId] = {};
+  }
+  state.milestones[currentMilestoneId].postedLinkedIn = checked;
+  saveState(state);
+
+  if (currentModalPhaseId) {
+    const phase = PHASES.find(p => p.id === currentModalPhaseId);
+    if (phase) updateMilestoneCard(phase);
+  }
+  updateGlobal();
+
+  if (checked) {
+    showToast('🎉 LinkedIn post marked as shared!');
+  }
+}
+
+// Click outside to close
+document.getElementById('linkedinModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ─── TOAST ───────────────────────────────────────────────────────────────────
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ─── RESET ───────────────────────────────────────────────────────────────────
+
+function resetProgress() {
+  if (!confirm('Reset ALL progress? This cannot be undone.')) return;
+  localStorage.removeItem(STATE_KEY);
+  state = { resources: {}, milestones: {} };
+  build();
+  showToast('Progress reset.');
+}
+
+// ─── SCROLL SPY ──────────────────────────────────────────────────────────────
+
+function initScrollSpy() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+        const pill = document.getElementById(`pill_${e.target.id}`);
+        if (pill) pill.classList.add('active');
+      }
+    });
+  }, { threshold: 0.2, rootMargin: '-80px 0px -60% 0px' });
+
+  PHASES.forEach(p => {
+    const el = document.getElementById(p.id);
+    if (el) observer.observe(el);
+  });
+}
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+
+function today() {
+  return new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+
+build();
+initScrollSpy();
+</script>
+</body>
+</html>
